@@ -1,14 +1,14 @@
-# flask-authentication
+# final year project "Emo-Insight" (2020-2024)
 
 
-This Flask project demonstrates user authentication using MongoDB as the database. It provides a secure authentication system that allows users to sign up, log in, and access protected routes.
+This Flask project demonstrates user authentication using MongoDB and mysql both as the database. It provides a secure authentication system that allows users to sign up, log in, and access protected routes.
 
 ## Project Structure
 
 - `static`: Directory for storing static files (CSS, JavaScript).
 - `templates`: Directory for storing HTML templates.
 - `app.py`: The main Flask application file.
-- `config.py`: Configuration file for storing sensitive information (e.g., MongoDB URI, secret keys).
+- `config.py`: Configuration file for storing sensitive information (e.g., MongoDB URI, secret keys, mysql config as well).
 
 ## Getting Started
 
@@ -17,6 +17,7 @@ This Flask project demonstrates user authentication using MongoDB as the databas
 - Python
 - Flask (install via `pip3 install Flask`)
 - Flask-PyMongo (install via `pip3 install "pymongo[srv]" `)
+- SqlClient, etc.
 - MongoDB (set up and running)
 
 ### Installation
