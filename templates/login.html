@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/loginStyles.css" />
+    <link rel="shortcut icon" href="../static/favicon/favicon-32x32.png" type="image/x-icon">
+    <title>Login | Emo-Insight</title>
+  </head>
+
+  <body>
+    <div class="logo">
+      <img
+        src="../static/logo.png"
+      />
+      <a href="#">Emo-Insight</a>
+    </div>
+
+    <div class="container">
+      <!-- <h1>Login to your account 👏</h1> -->
+      <div class="logoVid">
+        <video
+          src="../static/20240125_150430.mp4"
+          loop
+          width="250"
+          
+          autoplay
+          muted
+          style="align-self: center"
+        ></video>
+      </div>
+      <div class="social-login">
+        <button class="google">
+          <i class="bx bxl-google"></i>
+          Use Google
+        </button>
+        <button class="google">
+          <i class="bx bxl-apple"></i>
+          Use Apple
+        </button>
+      </div>
+      <div class="divider">
+        <div class="line"></div>
+        <p>Or</p>
+        <div class="line"></div>
+      </div>
+
+      <form method="post">
+        <label for="email">Username:</label>
+        <div class="custome-input">
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            placeholder="Username"
+            required
+            autocomplete="off"
+          />
+          <i class="bx bx-at"></i>
+        </div>
+        <label for="password">Password:</label>
+        <div class="custome-input">
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <i class="bx bx-lock-alt"></i>
+        </div>
+        {% if error %}
+        <div class="alert alert-danger mt-3">{{ error }}</div>
+        {% endif %}
+        <button class="login">Login</button>
+        <div class="links">
+          <a href="#">Forgot Password?</a>
+          <a href="{{ url_for('register') }}">Don't have an account?</a>
+        </div>
+      </form>
+      &nbsp;&nbsp;
+      <p>&copy;Copyright is reserved. M. Arshad(2020-2024)</p>
+    </div>
+  </body>
+</html>
