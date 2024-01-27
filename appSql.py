@@ -67,10 +67,10 @@ def analytics():
     if 'username' in session:
         return render_template('Stats/analytics.html', username=session['username'])
     return redirect(url_for('login'))
-@app.route('/you')
-def you():
+@app.route('/profile')
+def profile():
     if 'username' in session:
-        return render_template('Stats/you.html', username=session['username'])
+        return render_template('Stats/profile.html', username=session['username'])
     return redirect(url_for('login'))
 
 @app.route('/youtube')
@@ -106,9 +106,14 @@ def settings():
     if 'username' in session:
         return render_template('Stats/settings.html', username=session['username'])
     return redirect(url_for('login'))
+@app.route('/contact')
+def contact():
+    if 'username' in session:
+        return render_template('Stats/contact.html', username=session['username'])
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=False)
+    app.run(debug=True)
 

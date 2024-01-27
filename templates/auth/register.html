@@ -3,13 +3,14 @@
 <head>
     <title>Register | Emo-Insight</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='regStyles.css') }}">
     <link rel="shortcut icon" href="../static/favicon/favicon-32x32.png" type="image/x-icon">
 </head>
 <body>
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="card p-4">
-            <h1 class="text-center mb-4">Register</h1>
+        <div class="card p-4" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+            <div class="flex items-center justify-center w-full"><img src="../../static/logoWithText.png" width="250" class="ml-5"  alt=""></div>
+            <h1 class="text-center mt-4 ">Register</h1>
             <form method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
