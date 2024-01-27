@@ -6,9 +6,6 @@ import os
 
 app = Flask(__name__)
 
-# Choose the appropriate configuration based on your environment
-# For development, set 'FLASK_ENV=development' in your environment
-# For production, set 'FLASK_ENV=production' in your environment
 env = os.environ.get('FLASK_ENV', 'development')
 app.config.from_object(f'config.{env.capitalize()}Config')
 
@@ -34,8 +31,8 @@ def login():
             session['username'] = username
             return redirect(url_for('dashboard'))
         else:
-            return render_template('login.html', error='Invalid username or password')
-    return render_template('login.html')
+            return render_template('/auth/login.html', error='Invalid username or password')
+    return render_template('auth/login.html')
 
 #logout
 @app.route('/logout')
@@ -57,17 +54,61 @@ def register():
             db.session.commit()
             return redirect(url_for('login'))
         else:
-            return render_template('register.html', error='Passwords do not match')
-    return render_template('register.html')
+            return render_template('auth/register.html', error='Passwords do not match')
+    return render_template('auth/register.html')
 
 @app.route('/dashboard')
 def dashboard():
     if 'username' in session:
-        return render_template('dashboard.html', username=session['username'])
+        return render_template('Stats/dashboard.html', username=session['username'])
+    return redirect(url_for('login'))
+@app.route('/analytics')
+def analytics():
+    if 'username' in session:
+        return render_template('Stats/analytics.html', username=session['username'])
+    return redirect(url_for('login'))
+@app.route('/you')
+def you():
+    if 'username' in session:
+        return render_template('Stats/you.html', username=session['username'])
+    return redirect(url_for('login'))
+
+@app.route('/youtube')
+def youtube():
+    if 'username' in session:
+        return render_template('Stats/youtube.html', username=session['username'])
+    return redirect(url_for('login'))
+
+@app.route('/twitter')
+def twitter():
+    if 'username' in session:
+        return render_template('Stats/twitter.html', username=session['username'])
+    return redirect(url_for('login'))
+@app.route('/ticket')
+def ticket():
+    if 'username' in session:
+        return render_template('Stats/tickets.html', username=session['username'])
+    return redirect(url_for('login'))
+
+@app.route('/instagram')
+def instagram():
+    if 'username' in session:
+        return render_template('Stats/instagram.html', username=session['username'])
+    return redirect(url_for('login'))
+
+@app.route('/about')
+def about():
+    if 'username' in session:
+        return render_template('Stats/about.html', username=session['username'])
+    return redirect(url_for('login'))
+@app.route('/settings')
+def settings():
+    if 'username' in session:
+        return render_template('Stats/settings.html', username=session['username'])
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(debug=False)
 

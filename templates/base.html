@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Add your CSS links here -->
+    <!-- <link href="{{ url_for('static', filename='tailStyle.css') }}" rel="stylesheet"> -->
+    <link
+      href="{{ url_for('static', filename='output.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../static/dashStyles.css" />
+    <link rel="stylesheet" href="../static/settingStyle.css" />
+    <!-- Add your favicon link here -->
+
+    <link
+      rel="shortcut icon"
+      href="../static/favicon/favicon-32x32.png"
+      type="image/x-icon"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <a href="#" class="logo">
+        <div class="logo-name"><span> Emo</span>Insight</div>
+      </a>
+      <ul class="side-menu">
+        <li class="active">
+          <a href="{{ url_for('dashboard') }}"
+            ><i class="bx bxs-dashboard"></i>Dashboard</a
+          >
+        </li>
+        <li>
+          <a href="{{ url_for('analytics') }}"
+            ><i class="bx bx-analyse"></i>Analytics</a
+          >
+        </li>
+        <li>
+          <a href="{{ url_for('youtube') }}"
+            ><i class="bx bx-video"></i>Youtube</a
+          >
+        </li>
+        <li>
+          <a href="{{ url_for('twitter') }}"
+            ><i class='bx bxl-twitter'></i>Twitter</a
+          >
+        </li>
+        <li>
+          <a href="{{ url_for('instagram') }}">
+            <i class='bx bxl-instagram' ></i>Instagram
+          </a>
+      </li>
+        <li>
+          <a href="{{ url_for('ticket') }}"
+            ><i class="bx bx-message-square-dots"></i>Tickets</a
+          >
+        </li>
+        <li>
+          <a href="{{ url_for('you') }}"><i class="bx bx-user"></i>Profile</a>
+        </li>
+        <li>
+          <a href="{{ url_for('settings') }}"
+            ><i class="bx bx-cog"></i>Settings</a
+          >
+        </li>
+        <li>
+          <a href="{{ url_for('about') }}"
+            ><i class="bx bx-info-circle"></i>About Emo</a
+          >
+        </li>
+      </ul>
+      <ul class="side-menu">
+        <li>
+          <a href="{{ url_for('logout') }}" class="logout">
+            <i class="bx bx-log-out-circle"></i>
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- End of Sidebar -->
+
+    <div class="content">
+      <nav>
+        <i class="bx bx-menu"></i>
+        <form action="#">
+          <div class="form-input">
+            <input type="search" placeholder="Search..." />
+            <button class="search-btn" type="submit">
+              <i class="bx bx-search"></i>
+            </button>
+          </div>
+        </form>
+        <input type="checkbox" id="theme-toggle" hidden />
+        <label for="theme-toggle" class="theme-toggle"></label>
+        <a href="#" class="notif">
+          <i class="bx bx-bell"></i>
+          <span class="count">12</span>
+        </a>
+        <p>Welcome, {{ username }}!</p>
+        <a href="#" class="profile">
+          <img src="../static/logo.png" />
+        </a>
+      </nav>
+
+      <!-- End of Navbar -->
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <!-- Add your JavaScript scripts here -->
+
+    <script src="../static/dashboard.js"></script>
+
+    {% block scripts %}{% endblock %}
+  </body>
+</html>

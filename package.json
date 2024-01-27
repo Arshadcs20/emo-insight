@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "build": "python appSql.py && npx tailwindcss build ./static/tailStyle.css -o ./static/output.css"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}

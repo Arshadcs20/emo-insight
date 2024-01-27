@@ -22,6 +22,12 @@ body{
     align-items: center;
     gap: 10px;
 }
+@media only screen and (max-width: 600px) {
+    .logo {
+      display: none;
+    }
+  }
+  
 .logoVid{
     display: flex;
     align-items: center;
