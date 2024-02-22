@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
+from youtube_comments import fetch_youtube_comments, analyze_sentiment, process_video_comments, generate_wordcloud
 from hashlib import sha256
 import uuid
 import os
@@ -73,11 +74,24 @@ def profile():
         return render_template('Stats/profile.html', username=session['username'])
     return redirect(url_for('login'))
 
-@app.route('/youtube')
+@app.route('/youtube', methods=['GET', 'POST'])
 def youtube():
     if 'username' in session:
+        if request.method == 'POST':
+            video_url = request.form['video_url']
+            # Call functions from youtube_comments module
+            comments, sentiments = process_video_comments(video_url)
+            # print(comments)
+            positive_count = sum(1 for sentiment in sentiments if sentiment == 'Positive')
+            negative_count = sum(1 for sentiment in sentiments if sentiment == 'Negative')
+            neutral_count = sum(1 for sentiment in sentiments if sentiment == 'Neutral')
+            wordcloud_img = generate_wordcloud(comments)
+            return render_template('Stats/results.html', comments=comments, sentiments=sentiments , positive_count=positive_count, negative_count=negative_count, neutral_count=neutral_count, wordcloud_img=wordcloud_img)
         return render_template('Stats/youtube.html', username=session['username'])
+        # return render_template('Stats/youtube.html', username=session['username'])
     return redirect(url_for('login'))
+
+
 
 @app.route('/twitter')
 def twitter():

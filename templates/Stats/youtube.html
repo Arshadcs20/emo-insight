@@ -1,28 +1,32 @@
-{% extends "base.html" %} {% block title %} youtube | Emo-Insight {% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %} youtube sentiments | Emo-Insight {%
+endblock %} {% block content %}
 
 <div class="content">
-  
-  <main>
-    <div class="header">
-        <div class="left">
-            <h1>Dashboard</h1>
-            <ul class="breadcrumb">
-                <li><a href="#">
-                        Analytics
-                    </a></li>
-                /
-                <li><a href="#" class="active">Shop</a></li>
-            </ul>
-        </div>
-        <a href="#" class="report">
-            <i class='bx bx-cloud-download'></i>
-            <span>Download CSV</span>
-        </a>
-    </div>
+  <main class="w-full flex items-center justify-center">
+    
+    <form method="post" class="mb-60 flex flex-col w-1/2 ">
+      <!-- <label for="video_url" class="block mb-2">Enter YouTube Video URL:</label> -->
+      <h1 class="text-4xl font-bold text-center mt-36 mb-8">
+        YouTube Comments Sentiment Analysis
+      </h1>
+      <input
+        type="text"
+        id="video_url"
+        name="video_url"
+        autocomplete="off"
+        required
+        placeholder="Enter YouTube Video URL here"
+        class="border border-gray-300 rounded-md p-4 mb-2 focus:outline-none focus:border-blue-500"
+      />
+      <br />
+      <button type="submit" class="bg-blue-500 mb-40 p-4 hover:bg-blue-700 text-white border border-cyan-400 font-bold py-2 px-4 rounded">
+        Analyze 
+      </button>
+      
+    </form>
 
     <!-- Insights -->
-    <ul class="insights">
+    <!-- <ul class="insights">
         <li>
             <i class='bx bx-calendar-check'></i>
             <span class="info">
@@ -57,7 +61,7 @@
             </span>
         </li>
     </ul>
-    <!-- End of Insights -->
+    End of Insights
 
     <div class="bottom-data">
         <div class="orders">
@@ -104,7 +108,7 @@
             </table>
         </div>
 
-        <!-- Reminders -->
+        Reminders
         <div class="reminders">
             <div class="header">
                 <i class='bx bx-note'></i>
@@ -137,11 +141,10 @@
             </ul>
         </div>
 
-        <!-- End of Reminders-->
+        End of Reminders
 
-    </div>
-
-</main>
-
+    </div> -->
+  </main>
 
   {% endblock %}
+</div>

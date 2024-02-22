@@ -1,6 +1,15 @@
 {
-  
   "dependencies": {
     "tailwindcss": "^3.4.1"
-  }
+  },
+  "name": "emo-insight",
+  "description": "This Flask project demonstrates user authentication using MongoDB and mysql both as the database. It provides a secure authentication system that allows users to sign up, log in, and access protected routes.",
+  "version": "1.0.0",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

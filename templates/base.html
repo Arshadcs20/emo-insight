@@ -6,7 +6,8 @@
     <title>{% block title %}{% endblock %}</title>
     <!-- Add your CSS links here -->
     <!-- <link href="{{ url_for('static', filename='tailStyle.css') }}" rel="stylesheet"> -->
-    <link rel="stylesheet" href="../static/output.css">
+    <link href="{{url_for('static',filename='css/output.css')}}" rel="stylesheet">
+
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -28,7 +29,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <a href="#" class="logo">
-        <div class="logo-name"><span> Emo</span>Insight</div>
+        <div class="logo-name"><span>Emo&nbsp;</span>Insight</div>
       </a>
       <ul class="side-menu">
         <li class="active">
@@ -58,7 +59,7 @@
       </li>
         <li>
           <a href="{{ url_for('ticket') }}"
-            ><i class="bx bx-message-square-dots"></i>Tickets</a
+            ><i class="bx bx-history"></i>History</a
           >
         </li>
         <li>
@@ -122,7 +123,7 @@
 
 
     <!-- footer -->
-    <footer class="text-gray-600 body-font ml-16 sticky bottom-0">
+    <footer class="text-gray-600 body-font ml-16 fixed-bottom ">
       <div class="container px-5 mx-auto flex items-center sm:flex-row flex-col">
         <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
           <img src="../static/logo.png" width="35" alt="">

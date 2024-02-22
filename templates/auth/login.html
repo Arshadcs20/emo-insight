@@ -22,7 +22,7 @@
 
     <div class="container">
       <!-- <h1>Login to your account 👏</h1> -->
-      <div class="logoVid">
+      <div class="logoVid" id="video-container">
         <video
           src="../static/20240125_150430.mp4"
           loop
@@ -85,5 +85,11 @@
       &nbsp;&nbsp;
       <p>&copy;Copyright is reserved. M. Arshad(2020-2024)</p>
     </div>
+    <script>
+      // Disable right-click on the video
+      document.getElementById('video-container').addEventListener('contextmenu', function (event) {
+          event.preventDefault();
+      });
+  </script>
   </body>
 </html>
