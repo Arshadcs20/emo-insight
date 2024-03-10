@@ -5,17 +5,21 @@
 
 import os
 
+
 class Config:
     SECRET_KEY = 'marshadcs20-24plusMisbah'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'mysql://root:@localhost/emoflask'
 
+
 class ProductionConfig(Config):
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = 'mysql://root:@localhost/emoflask'
+
 
 # Choose the appropriate configuration based on your environment
 # For development, use DevelopmentConfig

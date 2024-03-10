@@ -1,13 +1,31 @@
-{% extends "base.html" %} {% block title %} Twitter | Emo-Insight {% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %} Twitter sentiments | Emo-Insight {%
+endblock %} {% block content %}
 
 <div class="content">
-  <p class="mx-4">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ipsum
-    quidem dicta sunt, laborum quasi nesciunt quisquam rem, odit asperiores
-    voluptates nobis fugit consequuntur dolores ut natus saepe. Nesciunt,
-    molestiae.
-  </p>
-
+  <main class="w-full flex items-center justify-center">
+    <form method="post" class="mb-60 flex flex-col w-1/2">
+      <!-- <label for="video_url" class="block mb-2">Enter YouTube Video URL:</label> -->
+      <h1 class="text-4xl font-bold text-center mt-36 mb-8">
+        Twitter Posts Sentiment Analysis
+      </h1>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        autocomplete="off"
+        required
+        placeholder="Enter twitter username here"
+        class="border border-gray-300 rounded-md p-4 mb-2 focus:outline-none focus:border-blue-500"
+      />
+      <br />
+      <button
+        type="submit"
+        class="bg-blue-500 mb-40 p-4 hover:bg-blue-700 text-white border border-cyan-400 font-bold py-2 px-4 rounded"
+      >
+        Analyze
+      </button>
+    </form>
+  </main>
 
   {% endblock %}
+</div>

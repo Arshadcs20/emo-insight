@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block title %} Results sentiments | Emo-Insight {%
+endblock %} {% block content %}
+
+<div class="content">
+  <main class="">
+    <h1 class="text-4xl font-bold m-2 text-center">
+      Twitter Posts Sentiment Analysis Results
+    </h1>
+    <div>
+      <h2>Tweets and Sentiments:</h2>
+      <ul>
+        {% for tweet, sentiment in tweets %}
+        <li>
+          <p><strong>Tweet:</strong> {{ tweet }}</p>
+          <p><strong>Sentiment:</strong> {{ sentiment }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </main>
+
+  {% endblock %}
+</div>

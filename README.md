@@ -1,6 +1,5 @@
 # final year project "Emo-Insight" (2020-2024)
 
-
 This Flask project demonstrates user authentication using MongoDB and mysql both as the database. It provides a secure authentication system that allows users to sign up, log in, and access protected routes.
 
 ## Project Structure
@@ -49,3 +48,7 @@ This Flask project demonstrates user authentication using MongoDB and mysql both
    ```
 
 3. Access the application in your web browser at [http://localhost:5000](http://localhost:5000).
+
+## Other Resources
+
+1. `https://pypi.org/project/ntscraper/ - for scraping data from websites`
