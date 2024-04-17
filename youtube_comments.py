@@ -48,7 +48,6 @@ def download_audio(link):
 
 
 def transcribe_audio(audio_file_path):
-    aai.settings.api_key = "f910199c49cc45d6b3e624192105276f"
     transcriber = aai.Transcriber()
     transcript = transcriber.transcribe(audio_file_path)
     return transcript.text
