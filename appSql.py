@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from youtube_comments import fetch_youtube_comments, analyze_sentiment, process_video_comments, generate_wordcloud
+from youtube_comments import fetch_youtube_comments, analyze_sentiment, process_video_comments, generate_wordcloud, yt_title, get_transcription, generate_blog_from_transcription
 from hashlib import sha256
 import uuid
 import os
@@ -116,7 +116,13 @@ def youtube():
             neutral_count = sum(
                 1 for sentiment in sentiments if sentiment == 'Neutral')
             wordcloud_img = generate_wordcloud(comments)
-            return render_template('Stats/results.html', comments=comments, sentiments=sentiments, positive_count=positive_count, negative_count=negative_count, neutral_count=neutral_count, wordcloud_img=wordcloud_img)
+            title = yt_title(video_url)
+            transcription = get_transcription(video_url)
+            # print(transcription)
+            # blog_content = generate_blog_from_transcription(transcription)
+            # print(blog_content)
+            return render_template('Stats/results.html', comments=comments, sentiments=sentiments, positive_count=positive_count, negative_count=negative_count, neutral_count=neutral_count, title=title, wordcloud_img=wordcloud_img, transcription=transcription)
+            # , summary=blog_content
         return render_template('Stats/youtube.html', username=session['username'])
         # return render_template('Stats/youtube.html', username=session['username'])
     return redirect(url_for('login'))

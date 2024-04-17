@@ -1,10 +1,11 @@
 {% extends "base.html" %} {% block title %} youtube sentiments | Emo-Insight {%
 endblock %} {% block content %}
-
 <div class="content">
   <main class="w-full flex items-center justify-center">
-    
-    <form method="post" class="mb-60 flex flex-col w-1/2 ">
+    <form
+      method="post"
+      class="mb-60 flex flex-col w-1/2 transition-transform hover:scale-105"
+    >
       <!-- <label for="video_url" class="block mb-2">Enter YouTube Video URL:</label> -->
       <h1 class="text-4xl font-bold text-center mt-36 mb-8">
         YouTube Comments Sentiment Analysis
@@ -16,17 +17,40 @@ endblock %} {% block content %}
         autocomplete="off"
         required
         placeholder="Enter YouTube Video URL here"
-        class="border border-gray-300 rounded-md p-4 mb-2 focus:outline-none focus:border-blue-500"
+        class="border border-gray-300 rounded-md py-5 text-xl p-4 mb-2 focus:outline-none focus:border-blue-500"
       />
       <br />
-      <button type="submit" class="bg-blue-500 mb-40 p-4 hover:bg-blue-700 text-white border border-cyan-400 font-bold py-2 px-4 rounded">
-        Analyze 
+      <button
+        type="submit"
+        id="analyze_sentiments"
+        class="bg-blue-500 mb-2 p-4 hover:bg-blue-700 text-xl text-white border border-cyan-400 font-bold py-5 px-4 rounded"
+      >
+        Analyze Sentiments
       </button>
-      
+      <div style="display: none" id="loading-circle" class="load"></div>
+      <div style="display: none" id="loading-text" class="justify-center">
+        <p class="text-zinc-600 text-center">
+          Depending on video length and comments, it may take a while.
+        </p>
+      </div>
     </form>
-
-    
   </main>
+  <script>
+    document
+      .getElementById("analyze_sentiments")
+      .addEventListener("click", async () => {
+        const youtubeLink = document.getElementById("video_url").value;
+        const text_load = document.getElementById("loading-text");
 
+        if (youtubeLink) {
+          document.getElementById("loading-circle").style.display = "block";
+          document.getElementById("loading-text").style.display = "block";
+        } else {
+          alert("Please enter a YouTube link.");
+          document.getElementById("loading-circle").style.display = "none";
+          document.getElementById("loading-text").style.display = "none";
+        }
+      });
+  </script>
   {% endblock %}
 </div>

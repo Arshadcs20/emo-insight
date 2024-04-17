@@ -3,7 +3,10 @@
 
 <div class="content">
   <main class="w-full flex items-center justify-center">
-    <form method="post" class="mb-60 flex flex-col w-1/2">
+    <form
+      method="post"
+      class="mb-60 flex flex-col w-1/2 transition-transform hover:scale-105"
+    >
       <!-- <label for="video_url" class="block mb-2">Enter YouTube Video URL:</label> -->
       <h1 class="text-4xl font-bold text-center mt-36 mb-8">
         Instagram Comments Sentiment Analysis
@@ -16,7 +19,7 @@
           name="username"
           autocomplete="off"
           placeholder="Enter  username here"
-          class="border border-gray-300 rounded-md p-4 mb-2 focus:outline-none focus:border-blue-500"
+          class="text-xl border border-gray-300 rounded-md p-4 mb-2 focus:outline-none focus:border-blue-500"
         />
         <!-- <label for="password">Password</label> -->
         <input
@@ -25,7 +28,7 @@
           name="password"
           autocomplete="off"
           placeholder="Enter Passoword here"
-          class="border border-gray-300 rounded-md p-4 mb-2 focus:outline-none focus:border-blue-500"
+          class="text-xl border border-gray-300 rounded-md p-4 mb-2 focus:outline-none focus:border-blue-500"
         />
       </div>
       <hr />
@@ -36,17 +39,41 @@
         autocomplete="off"
         required
         placeholder="Enter Instagram URL here"
-        class="border border-gray-300 rounded-md p-4 mb-2 focus:outline-none focus:border-blue-500"
+        class="text-xl border border-gray-300 rounded-md p-4 mb-2 focus:outline-none focus:border-blue-500"
       />
       <br />
       <button
         type="submit"
-        class="bg-blue-500 mb-40 p-4 hover:bg-blue-700 text-white border border-cyan-400 font-bold py-2 px-4 rounded"
+        id="insta_analyze"
+        class="text-2xl bg-blue-500 mb-2 py-5 p-4 hover:bg-blue-700 text-white border border-cyan-400 font-bold px-4 rounded"
       >
         Analyze
       </button>
+      <div style="display: none" id="loading-circle" class="load"></div>
+      <div style="display: none" id="loading-text" class="justify-center">
+        <p class="text-zinc-600 text-center">
+          This will take a while depending upon post length and number of
+          comments.
+        </p>
+      </div>
     </form>
   </main>
 </div>
+<script>
+  document
+    .getElementById("insta_analyze")
+    .addEventListener("click", async () => {
+      const insta_Url = document.getElementById("insta_url").value;
+      const text_load = document.getElementById("loading-text");
 
+      if (insta_Url) {
+        document.getElementById("loading-circle").style.display = "block";
+        document.getElementById("loading-text").style.display = "block";
+      } else {
+        alert("Please enter a instagram post link.");
+        document.getElementById("loading-circle").style.display = "none";
+        document.getElementById("loading-text").style.display = "none";
+      }
+    });
+</script>
 {% endblock %}

@@ -4,7 +4,7 @@ endblock %} {% block content %}
 <div class="content">
   <main class="">
     <h1 class="text-4xl font-bold m-2 text-center">
-      YouTube Comments Sentiment Analysis Results
+      YouTube Comment Sentiment Assessment
     </h1>
     <div class="mb-2 flex w-full justify-center items-center p-4">
       <p
@@ -31,8 +31,16 @@ endblock %} {% block content %}
       <img src="data:image/png;base64,{{ wordcloud_img }}" alt="Word Cloud" />
     </div>
     <div class="min-h-3/4">
+      <div class="m-4">
+        <p>{{transcription}}</p>
+      </div>
+      <div class="m-4">
+        <p>{{summary}}</p>
+      </div>
       <ul>
-        <h2 class="text-lg font-semibold mb-2">Comments and Sentiments</h2>
+        <h2 class="text-lg font-semibold mb-2">
+          Comments with Sentiments about {{title}}
+        </h2>
         {% for index in range(comments|length) %}
         <li class="mb-2 border gap-1 hover:bg-blue-300 rounded-2xl flex">
           <span
