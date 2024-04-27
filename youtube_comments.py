@@ -17,6 +17,14 @@ def yt_title(link):
     yt = YouTube(link)
     title = yt.title
     return title
+# Assuming sentiments is a list containing the sentiments (e.g., ['Positive', 'Negative', 'Neutral'])
+
+
+def calculate_confidence_level(positive_count, negative_count, total_sentiments):
+    if total_sentiments == 0:
+        return 0.0
+    confidence_level = (positive_count - negative_count) / total_sentiments
+    return confidence_level
 
 
 def get_transcription(youtube_url):
@@ -25,7 +33,8 @@ def get_transcription(youtube_url):
         audio_file_path = download_audio(youtube_url)
         # Transcribe the audio file
         transcription = transcribe_audio(audio_file_path)
-        return transcription, 200
+        print(transcription)
+        return transcription
     except Exception as e:
         return str(e), 500
 
@@ -33,13 +42,21 @@ def get_transcription(youtube_url):
 def download_audio(link):
     yt = YouTube(link)
     video = yt.streams.filter(only_audio=True).first()
-    # Ensure that the 'media' folder exists
     media_folder = 'media'
     if not os.path.exists(media_folder):
         os.makedirs(media_folder)
-    # Download audio to the 'media' folder
+
+    filename = video.title
+    filename = "".join(x for x in filename if x.isalnum()
+                       or x in [" ", ".", "_"]).strip()
+
+    file_path = os.path.join(media_folder, f"{filename}.mp3")
+
+    if os.path.exists(file_path):
+        # If the file already exists, return its path without re-downloading
+        return file_path
+
     out_file = video.download(output_path=media_folder)
-    # Rename the file to have a .mp3 extension
     base, ext = os.path.splitext(out_file)
     new_file = base + '.mp3'
     os.rename(out_file, new_file)
@@ -93,7 +110,7 @@ def generate_wordcloud(comments):
 
 
 # Download NLTK resources (if not already downloaded)
-nltk.download('vader_lexicon')
+# nltk.download('vader_lexicon')
 
 
 def extract_video_id(url):

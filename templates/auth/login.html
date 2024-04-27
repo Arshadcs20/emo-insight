@@ -8,15 +8,17 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../static/loginStyles.css" />
-    <link rel="shortcut icon" href="../static/favicon/favicon-32x32.png" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="../static/favicon/favicon-32x32.png"
+      type="image/x-icon"
+    />
     <title>Login | Emo-Insight</title>
   </head>
 
   <body>
     <div class="logo">
-      <img
-        src="../static/logo.png"
-      />
+      <img src="../static/logo.png" />
       <a href="#">Emo-Insight</a>
     </div>
 
@@ -24,10 +26,9 @@
       <!-- <h1>Login to your account 👏</h1> -->
       <div class="logoVid" id="video-container">
         <video
-          src="../static/20240125_150430.mp4"
           loop
+          src="../static/20240125_150430.mp4"
           width="250"
-          
           autoplay
           muted
           style="align-self: center"
@@ -87,9 +88,11 @@
     </div>
     <script>
       // Disable right-click on the video
-      document.getElementById('video-container').addEventListener('contextmenu', function (event) {
+      document
+        .getElementById("video-container")
+        .addEventListener("contextmenu", function (event) {
           event.preventDefault();
-      });
-  </script>
+        });
+    </script>
   </body>
 </html>

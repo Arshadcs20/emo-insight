@@ -10,7 +10,7 @@
       href="{{url_for('static',filename='css/output.css')}}"
       rel="stylesheet"
     />
-
+    <link rel="stylesheet" href="../static/css/particle-styel.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -63,7 +63,7 @@
           </a>
         </li>
         <li>
-          <a href="{{ url_for('ticket') }}"
+          <a href="{{ url_for('history') }}"
             ><i class="bx bx-history"></i>History</a
           >
         </li>
@@ -98,7 +98,7 @@
       </ul>
     </div>
     <!-- End of Sidebar -->
-
+    <!-- <div class="particle-network-animation"></div> -->
     <div class="content">
       <nav>
         <i class="bx bx-menu"></i>
@@ -124,7 +124,6 @@
 
       <!-- End of Navbar -->
     </div>
-
     {% block content %}{% endblock %}
 
     <!-- footer -->
@@ -238,7 +237,7 @@
         });
       });
     </script>
-
+    <script src="../static/js/particle.js"></script>
     {% block scripts %}{% endblock %}
   </body>
 </html>

@@ -1,12 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from youtube_comments import fetch_youtube_comments, analyze_sentiment, process_video_comments, generate_wordcloud, yt_title, get_transcription, generate_blog_from_transcription
+from youtube_comments import fetch_youtube_comments, analyze_sentiment, process_video_comments, generate_wordcloud, yt_title, get_transcription, generate_blog_from_transcription, calculate_confidence_level
 from hashlib import sha256
+from datetime import datetime
 import uuid
 import os
 import tweepy
 from textblob import TextBlob
 from instagram import scrape_instagram_comments
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
@@ -34,6 +35,32 @@ class User(db.Model):
     email = db.Column(db.String(64), nullable=False)
 
 
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    platform = db.Column(db.String(50), nullable=False)
+    # Assuming your User model is named 'User'
+    user_id = db.Column(db.String(32), db.ForeignKey(
+        'user.id'), nullable=False)
+
+
+class Dashboard(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text, nullable=True)
+    user_id = db.Column(db.String(32), db.ForeignKey(
+        'user.id'), nullable=False)
+
+
+class AnalysisResult(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    vid_url = db.Column(db.String(255), nullable=True)
+    transcript = db.Column(db.String(6000), nullable=True)
+    confidence_level = db.Column(db.Float, nullable=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=True)
+
+
 @app.route('/')
 def index():
     return redirect(url_for('login'))
@@ -47,6 +74,7 @@ def login():
         user = User.query.filter_by(username=username).first()
         if user and sha256(password.encode("utf-8")).hexdigest() == user.password:
             session['username'] = username
+
             return redirect(url_for('dashboard'))
         else:
             return render_template('/auth/login.html', error='Invalid username or password')
@@ -83,6 +111,13 @@ def register():
 @app.route('/dashboard')
 def dashboard():
     if 'username' in session:
+        # def print_session_attributes():
+        #     # Iterate over the session items and print each key-value pair
+        #     for key, value in session.items():
+        #         print(f"{key}: {value}")
+
+        # # Call the function to print session attributes
+        # print_session_attributes()
         return render_template('Stats/dashboard.html', username=session['username'])
     return redirect(url_for('login'))
 
@@ -121,7 +156,24 @@ def youtube():
             # print(transcription)
             # blog_content = generate_blog_from_transcription(transcription)
             # print(blog_content)
-            return render_template('Stats/results.html', comments=comments, sentiments=sentiments, positive_count=positive_count, negative_count=negative_count, neutral_count=neutral_count, title=title, wordcloud_img=wordcloud_img, transcription=transcription)
+            total_sentiments = positive_count + negative_count + neutral_count
+            confidence_count = calculate_confidence_level(
+                positive_count, negative_count, total_sentiments)
+            user = User.query.filter_by(username=session['username']).first()
+            user_id = user.id
+            # Create a new Post instance
+            new_post = Post(content=video_url, timestamp=datetime.utcnow(),
+                            platform="youtube", user_id=user_id)
+            # Add the new post to the database session
+            db.session.add(new_post)
+            # Commit the session to save the changes to the database
+            db.session.commit()
+            new_post_id = new_post.id
+            analysis_result = AnalysisResult(
+                vid_url=title, transcript=transcription, confidence_level=confidence_count, post_id=new_post_id)
+            db.session.add(analysis_result)
+            db.session.commit()
+            return render_template('Stats/results.html', comments=comments, sentiments=sentiments, positive_count=positive_count, negative_count=negative_count, neutral_count=neutral_count, title=title, wordcloud_img=wordcloud_img, transcription=transcription, username=session['username'])
             # , summary=blog_content
         return render_template('Stats/youtube.html', username=session['username'])
         # return render_template('Stats/youtube.html', username=session['username'])
@@ -152,10 +204,40 @@ def twitter():
         return redirect(url_for('login'))
 
 
-@app.route('/ticket')
-def ticket():
+@app.route('/history')
+def history():
     if 'username' in session:
-        return render_template('Stats/tickets.html', username=session['username'])
+        # Fetch all posts
+        all_posts = Post.query.all()
+        # Create a list to store post data along with analysis results
+        posts_with_analysis = []
+
+        # Iterate over each post
+        for post in all_posts:
+            # Fetch the analysis result for the current post
+            analysis_result = AnalysisResult.query.filter_by(
+                post_id=post.id).first()
+
+            # Extract data from the fetched objects
+            video_url = post.content
+            title = analysis_result.vid_url if analysis_result else None
+            transcription = analysis_result.transcript if analysis_result else None
+            confidence_level = analysis_result.confidence_level if analysis_result else None
+
+            # Create a dictionary to store post data along with analysis result
+            post_data = {
+                'video_url': video_url,
+                'title': title,
+                'transcription': transcription,
+                'confidence_level': confidence_level
+            }
+
+            # Append the post data to the list
+            posts_with_analysis.append(post_data)
+            print(posts_with_analysis)
+        return render_template('Stats/history.html',
+                               posts_with_analysis=posts_with_analysis,
+                               username=session['username'])
     return redirect(url_for('login'))
 
 
@@ -175,6 +257,14 @@ def instagram():
             neutral_count = sum(
                 1 for sentiment in sentiments if sentiment == 'Neutral')
             wordcloud_img = generate_wordcloud(comments)
+            new_post = Post(content=insta_url, timestamp=datetime.utcnow(),
+                            platform="Instagram", user_id=session['user_id'])
+
+            # Add the new post to the database session
+            db.session.add(new_post)
+
+            # Commit the session to save the changes to the database
+            db.session.commit()
             return render_template('Stats/instagram_result.html', comments=comments, sentiments=sentiments, positive_count=positive_count, negative_count=negative_count, neutral_count=neutral_count, wordcloud_img=wordcloud_img)
         return render_template('Stats/instagram.html', username=session['username'])
         # return render_template('Stats/youtube.html', username=session['username'])
@@ -204,5 +294,8 @@ def contact():
 
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()
+        try:
+            db.create_all()
+        except Exception as e:
+            print("An error occurred while creating tables:", str(e))
     app.run(debug=True)
