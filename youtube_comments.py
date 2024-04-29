@@ -33,7 +33,7 @@ def get_transcription(youtube_url):
         audio_file_path = download_audio(youtube_url)
         # Transcribe the audio file
         transcription = transcribe_audio(audio_file_path)
-        print(transcription)
+        # print(transcription)
         return transcription
     except Exception as e:
         return str(e), 500

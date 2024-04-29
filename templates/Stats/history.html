@@ -7,19 +7,30 @@
     >
       Analysis Report
     </h1>
-    {% for post_data in posts_with_analysis %}
-    <div class="border p-3 mt-2 rounded-md shadow-md">
+    {% for post_data in posts_with_analysis|reverse %}
+    <div class="border p-3 my-2 bg-white rounded-md shadow-md item">
       <p class="p-2 m-2 text-lg justify-self-stretch">
-        <strong>Video URL:</strong> {{ post_data['video_url'] }}
+        <strong>Video URL:</strong
+        ><span
+          class="video-url text-blue-700 hover:underline hover:cursor-pointer"
+          >{{ post_data['video_url'] }}</span
+        >
       </p>
       <p class="p-2 m-2 text-lg justify-self-stretch">
-        <strong>Title:</strong> {{ post_data['title'] }}
+        <strong>Title:</strong>
+        <span class="title">{{ post_data['title'] }}</span>
       </p>
       <p class="p-2 m-2 text-lg justify-self-stretch">
-        <strong>Transcription:</strong> {{ post_data['transcription'] }}
+        <strong>Transcription:</strong
+        ><span class="transcription text-sm"
+          >{{ post_data['transcription'] }}</span
+        >
       </p>
       <p class="p-2 m-2 text-lg justify-self-stretch">
-        <strong>Confidence Level:</strong> {{ post_data['confidence_level'] }}
+        <strong>Confidence Level:</strong>
+        <span class="confidence-level"
+          >{{ post_data['confidence_level'] }}</span
+        >
       </p>
     </div>
     {% endfor %}

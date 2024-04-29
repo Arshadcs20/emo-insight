@@ -219,7 +219,10 @@ body,
 html,nav {
     overflow: hidden;
 }
-
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
 /* Style scrollbar for the content div */
 .content {
     overflow-y: auto;

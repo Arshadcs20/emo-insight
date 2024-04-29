@@ -1,6 +1,15 @@
 const menuBar = document.querySelector(".content nav .bx.bx-menu");
 const sideBar = document.querySelector(".sidebar");
 
+function togglePasswordVisibility() {
+  var passwordField = document.getElementById("passwordField");
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+  } else {
+    passwordField.type = "password";
+  }
+}
+
 menuBar.addEventListener("click", () => {
   sideBar.classList.toggle("close");
 });

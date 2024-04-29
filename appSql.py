@@ -234,7 +234,7 @@ def history():
 
             # Append the post data to the list
             posts_with_analysis.append(post_data)
-            print(posts_with_analysis)
+            # print(posts_with_analysis)
         return render_template('Stats/history.html',
                                posts_with_analysis=posts_with_analysis,
                                username=session['username'])
@@ -257,13 +257,27 @@ def instagram():
             neutral_count = sum(
                 1 for sentiment in sentiments if sentiment == 'Neutral')
             wordcloud_img = generate_wordcloud(comments)
+            transcription = get_transcription(insta_url)
+            # print(transcription)
+            # blog_content = generate_blog_from_transcription(transcription)
+            # print(blog_content)
+            total_sentiments = positive_count + negative_count + neutral_count
+            confidence_count = calculate_confidence_level(
+                positive_count, negative_count, total_sentiments)
+            user = User.query.filter_by(username=session['username']).first()
+            user_id = user.id
             new_post = Post(content=insta_url, timestamp=datetime.utcnow(),
-                            platform="Instagram", user_id=session['user_id'])
+                            platform="Instagram", user_id=user_id)
 
             # Add the new post to the database session
             db.session.add(new_post)
 
             # Commit the session to save the changes to the database
+            db.session.commit()
+            new_post_id = new_post.id
+            analysis_result = AnalysisResult(
+                vid_url=insta_url, transcript=transcription, confidence_level=confidence_count, post_id=new_post_id)
+            db.session.add(analysis_result)
             db.session.commit()
             return render_template('Stats/instagram_result.html', comments=comments, sentiments=sentiments, positive_count=positive_count, negative_count=negative_count, neutral_count=neutral_count, wordcloud_img=wordcloud_img)
         return render_template('Stats/instagram.html', username=session['username'])
