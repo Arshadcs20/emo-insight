@@ -6,7 +6,7 @@ This Flask project demonstrates user authentication using MongoDB and mysql both
 
 - `static`: Directory for storing static files (CSS, JavaScript).
 - `templates`: Directory for storing HTML templates.
-- `app.py`: The main Flask application file.
+- `appSql.py`: The main Flask application file.
 - `config.py`: Configuration file for storing sensitive information (e.g., MongoDB URI, secret keys, mysql config as well).
 
 ## Getting Started
@@ -24,13 +24,13 @@ This Flask project demonstrates user authentication using MongoDB and mysql both
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/PytechAcademy/flask-authentication.git
+   https://github.com/Arshadcs20/emo-insight.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd flask-authentication
+   cd emo-insight
    ```
 
 ### Usage
@@ -44,7 +44,7 @@ This Flask project demonstrates user authentication using MongoDB and mysql both
 2. Run the Flask application:
 
    ```bash
-   python app.py
+   python appSql.py
    ```
 
 3. Access the application in your web browser at [http://localhost:5000](http://localhost:5000).
