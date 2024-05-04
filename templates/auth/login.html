@@ -7,6 +7,10 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <link
+      href="{{url_for('static',filename='css/output.css')}}"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../../static/loginStyles.css" />
     <link
       rel="shortcut icon"
@@ -76,7 +80,11 @@
           <i class="bx bx-lock-alt"></i>
         </div>
         {% if error %}
-        <div class="alert alert-danger mt-3">{{ error }}</div>
+        <div
+          class="flex rounded-md items-center justify-center text-red-600 mt-3"
+        >
+          <p>{{ error }}</p>
+        </div>
         {% endif %}
         <button class="login">Login</button>
         <div class="links">

@@ -61,6 +61,13 @@ class AnalysisResult(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=True)
 
 
+class Feedback(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    email = db.Column(db.String(100))
+    message = db.Column(db.Text)
+
+
 @app.route('/')
 def index():
     return redirect(url_for('login'))
@@ -207,19 +214,21 @@ def twitter():
 @app.route('/history')
 def history():
     if 'username' in session:
-        # Fetch all posts
-        all_posts = Post.query.all()
-        # Create a list to store post data along with analysis results
+        # Fetch the user ID for the current user
+        user = User.query.filter_by(username=session['username']).first()
+        user_id = user.id
+
+        # Fetch all posts and analysis results for the current user
+        all_posts = Post.query.filter_by(user_id=user_id).all()
         posts_with_analysis = []
 
-        # Iterate over each post
         for post in all_posts:
-            # Fetch the analysis result for the current post
             analysis_result = AnalysisResult.query.filter_by(
                 post_id=post.id).first()
 
             # Extract data from the fetched objects
             video_url = post.content
+            timestamp = post.timestamp
             title = analysis_result.vid_url if analysis_result else None
             transcription = analysis_result.transcript if analysis_result else None
             confidence_level = analysis_result.confidence_level if analysis_result else None
@@ -227,6 +236,7 @@ def history():
             # Create a dictionary to store post data along with analysis result
             post_data = {
                 'video_url': video_url,
+                'timestamp': timestamp,
                 'title': title,
                 'transcription': transcription,
                 'confidence_level': confidence_level
@@ -234,7 +244,7 @@ def history():
 
             # Append the post data to the list
             posts_with_analysis.append(post_data)
-            # print(posts_with_analysis)
+
         return render_template('Stats/history.html',
                                posts_with_analysis=posts_with_analysis,
                                username=session['username'])
@@ -299,9 +309,23 @@ def settings():
     return redirect(url_for('login'))
 
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    if 'username' in session:
+    if request.method == 'POST':
+        # Fetch form data
+        name = request.form['name']
+        email = request.form['email']
+        message = request.form['message']
+
+        # Create a new feedback object
+        feedback = Feedback(name=name, email=email, message=message)
+
+        # Add feedback to the database session and commit
+        db.session.add(feedback)
+        db.session.commit()
+
+        return render_template('Stats/contact.html', username=session.get('username'))
+    elif 'username' in session:
         return render_template('Stats/contact.html', username=session['username'])
     return redirect(url_for('login'))
 

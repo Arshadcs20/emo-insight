@@ -9,11 +9,17 @@
     </h1>
     {% for post_data in posts_with_analysis|reverse %}
     <div class="border p-3 my-2 bg-white rounded-md shadow-md item">
-      <p class="p-2 m-2 text-lg justify-self-stretch">
-        <strong>Video URL:</strong
-        ><span
-          class="video-url text-blue-700 hover:underline hover:cursor-pointer"
-          >{{ post_data['video_url'] }}</span
+      <p class="p-2 m-2 text-lg flex justify-between justify-self-stretch">
+        <span
+          ><strong>Video URL:</strong
+          ><span
+            class="video-url text-blue-700 hover:underline hover:cursor-pointer"
+            >&nbsp;{{ post_data['video_url'] }}</span
+          ></span
+        >
+        <span class="title"
+          >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Dated:</strong>&nbsp;{{
+          post_data['timestamp'] }}</span
         >
       </p>
       <p class="p-2 m-2 text-lg justify-self-stretch">

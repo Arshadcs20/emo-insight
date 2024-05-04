@@ -52,46 +52,95 @@
         <p class="leading-relaxed mb-5 text-gray-600">
           Please write your valuable Feedback
         </p>
-        <div class="relative mb-4">
-          <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            class="w-full rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-          />
-        </div>
-        <div class="relative mb-4">
-          <label for="email" class="leading-7 text-sm text-gray-600"
-            >Email</label
+        <form id="feedbackForm" method="POST" action="/contact">
+          <!-- Ensure the form action points to the correct route -->
+          <div class="relative mb-4">
+            <label for="name" class="leading-7 text-sm text-gray-600"
+              >Name</label
+            >
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="w-full rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+            />
+          </div>
+          <div class="relative mb-4">
+            <label for="email" class="leading-7 text-sm text-gray-600"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="w-full rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+            />
+          </div>
+          <div class="relative mb-4">
+            <label for="message" class="leading-7 text-sm text-gray-600"
+              >Message</label
+            >
+            <textarea
+              id="message"
+              name="message"
+              class="w-full rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            id="submitButton"
+            class="text-white w-full bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
           >
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="w-full rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-          />
-        </div>
-        <div class="relative mb-4">
-          <label for="message" class="leading-7 text-sm text-gray-600"
-            >Message</label
-          >
-          <textarea
-            id="message"
-            name="message"
-            class="w-full rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-          ></textarea>
-        </div>
-        <button
-          class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-        >
-          Submit
-        </button>
-        <p class="text-xs text-gray-500 mt-3">
-          We will contact you soon in working days.
-        </p>
+            Submit
+          </button>
+        </form>
       </div>
     </div>
   </section>
+
+  <!-- Modal -->
+  <div
+    id="myModal"
+    class="fixed inset-0 z-10 flex justify-center items-center bg-gray-400 bg-opacity-50"
+  >
+    <div class="bg-indigo-500 hover:bg-indigo-600 rounded-lg p-8">
+      <p class="text-sm text-white">
+        Thank you for your feedback! We will contact you soon in working days.
+        <span
+          class="close text-4xl font-extrabold cursor-pointer hover:text-red-700"
+          >&nbsp;&nbsp;&times;</span
+        >
+      </p>
+    </div>
+  </div>
+
+  <!-- JavaScript for modal -->
+  <script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("submitButton");
+
+    // Get the <span> element that closes the modal
+    var span = document.querySelector(".close");
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function () {
+      modal.style.display = "flex";
+    };
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
 </div>
 {% endblock %}

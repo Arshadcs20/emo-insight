@@ -1,14 +1,19 @@
-{% extends "base.html" %} {% block title %} Analytics | Emo-Insight {% endblock
-%} {% block content %}
+{% extends "base.html" %} {% block title %} Home | Emo-Insight {% endblock %} {%
+block content %}
+
+<!-- Main Content -->
 <div class="content">
-  <main>
+  <!-- Navbar -->
+  <!-- Navbar -->
+
+  <main class="">
     <div class="header">
       <div class="left">
         <h1>Dashboard</h1>
         <ul class="breadcrumb">
           <li><a href="#"> Analytics </a></li>
           /
-          <li><a href="#" class="active">Shop</a></li>
+          <li><a href="#" class="active">Results</a></li>
         </ul>
       </div>
       <a href="#" class="report">
@@ -23,7 +28,7 @@
         <i class="bx bx-calendar-check"></i>
         <span class="info">
           <h3>1,074</h3>
-          <p>Paid Order</p>
+          <p>Completed Tasks</p>
         </span>
       </li>
       <li>
@@ -44,7 +49,7 @@
         <i class="bx bx-dollar-circle"></i>
         <span class="info">
           <h3>$6,742</h3>
-          <p>Total Sales</p>
+          <p>Total Save</p>
         </span>
       </li>
     </ul>
@@ -54,7 +59,7 @@
       <div class="orders">
         <div class="header">
           <i class="bx bx-receipt"></i>
-          <h3>Recent Orders</h3>
+          <h3>Recent Status</h3>
           <i class="bx bx-filter"></i>
           <i class="bx bx-search"></i>
         </div>
@@ -62,7 +67,7 @@
           <thead>
             <tr>
               <th>User</th>
-              <th>Order Date</th>
+              <th>Date</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -70,25 +75,25 @@
             <tr>
               <td>
                 <img src="images/profile-1.jpg" />
-                <p>John Doe</p>
+                <p>Arshad</p>
               </td>
-              <td>14-08-2023</td>
+              <td>01-03-2024</td>
               <td><span class="status completed">Completed</span></td>
             </tr>
             <tr>
               <td>
                 <img src="images/profile-1.jpg" />
-                <p>John Doe</p>
+                <p>Aaqil</p>
               </td>
-              <td>14-08-2023</td>
+              <td>5-03-2024</td>
               <td><span class="status pending">Pending</span></td>
             </tr>
             <tr>
               <td>
                 <img src="images/profile-1.jpg" />
-                <p>John Doe</p>
+                <p>Shahzad</p>
               </td>
-              <td>14-08-2023</td>
+              <td>8-03-2024</td>
               <td><span class="status process">Processing</span></td>
             </tr>
           </tbody>
@@ -131,5 +136,5 @@
       <!-- End of Reminders-->
     </div>
   </main>
-  {% endblock %}
 </div>
+{% endblock %}
