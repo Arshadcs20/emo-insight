@@ -1,4 +1,4 @@
-# final year project "Emo-Insight" (2020-2024)
+# Final year project "Emo-Insight" (2020-2024)
 
 This Flask project demonstrates user authentication using MongoDB and mysql both as the database. It provides a secure authentication system that allows users to sign up, log in, and access protected routes.
 
@@ -35,19 +35,19 @@ This Flask project demonstrates user authentication using MongoDB and mysql both
 
 ### Usage
 
-1. Configure MongoDB URI in the `config.py` file:
+<!-- 1. Configure MongoDB URI in the `config.py` file:
 
    ```python
    MONGO_URI = "your url from Atlas"
-   ```
+   ``` -->
 
-2. Run the Flask application:
+1. Run the Flask application:
 
    ```bash
    python appSql.py
    ```
 
-3. Access the application in your web browser at [http://localhost:5000](http://localhost:5000).
+2. Access the application in your web browser at [http://localhost:5000](http://localhost:5000).
 
 ## Other Resources
 
