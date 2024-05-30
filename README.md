@@ -1,4 +1,4 @@
-# final year project "Emo-Insight" (2020-2024)
+# Final year project "Emo-Insight" (2020-2024)
 
 This Flask project demonstrates user authentication using MongoDB and mysql both as the database. It provides a secure authentication system that allows users to sign up, log in, and access protected routes.
 
