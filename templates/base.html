@@ -118,7 +118,7 @@
           <i class="bx bx-bell"></i>
           <span class="count">12</span>
         </a>
-        <p>Welcome, {{ username }}!</p>
+        <p class="userSession">Welcome, {{ username }}!</p>
         <a href="#" class="profile">
           <img src="../static/logo.png" />
         </a>
@@ -129,7 +129,7 @@
     {% block content %}{% endblock %}
 
     <!-- footer -->
-    <footer class="text-gray-600 body-font ml-16 fixed-bottom">
+    <footer class="text-gray-600 body-font ml-16 fixed-bottom footerDark">
       <div
         class="container px-5 mx-auto flex items-center sm:flex-row flex-col"
       >
@@ -137,24 +137,24 @@
           class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
         >
           <img src="../static/logo.png" width="35" alt="" />
-          <span class="ml-3 text-xl">Emo-Insight</span>
+          <span class="ml-3 text-xl footerDark">Emo-Insight</span>
         </a>
         <p
-          class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"
+          class="text-sm footerDark text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"
         >
           © 2024 Emo-Insight —
           <a
             href="https://arshadcs20.github.io/"
-            class="text-gray-600 ml-1"
+            class="text-gray-600 ml-1 footerDark"
             rel="noopener noreferrer"
             target="_blank"
             >@www</a
           >
         </p>
         <span
-          class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start"
+          class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start footerDark"
         >
-          <a class="text-gray-500">
+          <a class="text-gray-500 darkTitle">
             <svg
               fill="currentColor"
               stroke-linecap="round"
@@ -168,7 +168,7 @@
               ></path>
             </svg>
           </a>
-          <a class="ml-3 text-gray-500">
+          <a class="ml-3 text-gray-500 darkTitle">
             <svg
               fill="currentColor"
               stroke-linecap="round"
@@ -182,7 +182,7 @@
               ></path>
             </svg>
           </a>
-          <a class="ml-3 text-gray-500">
+          <a class="ml-3 text-gray-500 darkTitle">
             <svg
               fill="none"
               stroke="currentColor"
@@ -198,7 +198,7 @@
               ></path>
             </svg>
           </a>
-          <a class="ml-3 text-gray-500">
+          <a class="ml-3 text-gray-500 darkTitle">
             <svg
               fill="currentColor"
               stroke="currentColor"

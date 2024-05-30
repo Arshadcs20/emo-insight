@@ -52,3 +52,9 @@ This Flask project demonstrates user authentication using MongoDB and mysql both
 ## Other Resources
 
 1. `https://pypi.org/project/ntscraper/ - for scraping data from websites`
+
+## Tailwind
+1. `https://tailwindcss.com/docs/installation - for styling the website`
+
+## Visit the following portfolio site
+1. `https://arshadcs20.github.io/`

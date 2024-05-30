@@ -262,7 +262,15 @@ html,nav {
     border-radius: 50%;
     box-shadow: -20px -20px 0 var(--light);
 }
-
+.userSession{
+    color:var(--dark)
+}
+.footerDark{
+    color: var(--dark);
+}
+.darkTitle{
+    color: var(--dark);
+}
 .content nav a{
     color: var(--dark);
 }
