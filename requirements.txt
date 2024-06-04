@@ -10,5 +10,6 @@ tweepy
 textblob
 instaloader
 emoji
+python-dotenv
 flask_sqlalchemy
 mysqlclient
