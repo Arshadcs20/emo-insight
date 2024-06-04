@@ -10,7 +10,10 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
 from pytube import YouTube
+from dotenv import load_dotenv
 import os
+
+load_dotenv()
 
 
 def yt_title(link):
@@ -71,7 +74,7 @@ def transcribe_audio(audio_file_path):
 
 
 def generate_blog_from_transcription(transcription):
-    openai.api_key = "sk-proj-BMvUb7B3n980CLPelbSDT3BlbkFJo1I550TswEN2fdVgdET1"
+    api_key = os.getenv('OPENAI_API_KEY2')
 
     prompt = f"""Based on the following transcript from a YouTube video, write a comprehensive blog article, write it based on the transcript, but don't make it look like a YouTube video, make it look like a proper blog article:
 
@@ -88,7 +91,7 @@ def generate_blog_from_transcription(transcription):
     generated_content = response['choices'][0]['text'].strip()
 
     return generated_content
-    
+
 
 def generate_wordcloud(comments):
     # Convert comments list to text
