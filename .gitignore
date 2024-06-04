@@ -5,6 +5,8 @@ logs
 # Dependency directories
 node_modules/
 jspm_packages/
+myenv/
+.venv/
 
 # Optional npm cache directory
 .npm

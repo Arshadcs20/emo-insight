@@ -17,7 +17,6 @@ def yt_title(link):
     yt = YouTube(link)
     title = yt.title
     return title
-# Assuming sentiments is a list containing the sentiments (e.g., ['Positive', 'Negative', 'Neutral'])
 
 
 def calculate_confidence_level(positive_count, negative_count, total_sentiments):
@@ -72,23 +71,24 @@ def transcribe_audio(audio_file_path):
 
 
 def generate_blog_from_transcription(transcription):
-    openai.api_key = "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"
+    openai.api_key = "sk-proj-BMvUb7B3n980CLPelbSDT3BlbkFJo1I550TswEN2fdVgdET1"
 
-    prompt = f"Based on the following transcript from a YouTube video, write a comprehensive blog article, write it based on the transcript, but don't make it look like a YouTube video, make it look like a proper blog article:\n\n{
-        transcription}\n\nArticle:"
+    prompt = f"""Based on the following transcript from a YouTube video, write a comprehensive blog article, write it based on the transcript, but don't make it look like a YouTube video, make it look like a proper blog article:
 
-    # Use a supported model (e.g., davinci-codex)
+    {transcription}
+
+    Article:"""
+
     response = openai.Completion.create(
-        engine="text-davinci-002-render-sha",
-        # engine="text-davinci-003",
+        engine="text-davinci-002",
         prompt=prompt,
         max_tokens=250
     )
 
-    generated_content = response.choices[0].text.strip()
+    generated_content = response['choices'][0]['text'].strip()
 
     return generated_content
-
+    
 
 def generate_wordcloud(comments):
     # Convert comments list to text
@@ -109,8 +109,8 @@ def generate_wordcloud(comments):
     return img_base64
 
 
-# Download NLTK resources (if not already downloaded)
-# nltk.download('vader_lexicon')
+# Download NLTK resources(if not already downloaded)
+nltk.download('vader_lexicon')
 
 
 def extract_video_id(url):

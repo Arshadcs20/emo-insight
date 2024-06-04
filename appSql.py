@@ -258,7 +258,7 @@ def instagram():
             insta_url = request.form['insta_url']
             # Call functions from youtube_comments module
             comments = scrape_instagram_comments(insta_url)
-            # print(comments)
+
             sentiments = analyze_sentiment(comments)
             positive_count = sum(
                 1 for sentiment in sentiments if sentiment == 'Positive')

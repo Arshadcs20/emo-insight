@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock %}</title>
-    <!-- Add your CSS links here -->
     <!-- <link href="{{ url_for('static', filename='tailStyle.css') }}" rel="stylesheet"> -->
     <link
       href="{{url_for('static',filename='css/output.css')}}"
@@ -18,7 +17,6 @@
     <link rel="stylesheet" href="../static/css/contactStyle.css" />
     <link rel="stylesheet" href="../static/dashStyles.css" />
     <link rel="stylesheet" href="../static/settingStyle.css" />
-    <!-- Add your favicon link here -->
 
     <link
       rel="shortcut icon"
@@ -129,7 +127,7 @@
     {% block content %}{% endblock %}
 
     <!-- footer -->
-    <footer class="text-gray-600 body-font ml-16 fixed-bottom footerDark">
+    <footer class="text-gray-600 body-font ml-16 fixed-bottom my-3 footerDark">
       <div
         class="container px-5 mx-auto flex items-center sm:flex-row flex-col"
       >
@@ -218,7 +216,6 @@
         </span>
       </div>
     </footer>
-    <!-- Add your JavaScript scripts here -->
     <script src="../static/dashboard.js"></script>
     <!-- <script src="{{url_for('static',filename='dashboard.js')}}"></script> -->
     <script>

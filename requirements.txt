@@ -1,0 +1,14 @@
+Flask
+requests
+nltk
+assemblyai
+openai
+wordcloud
+matplotlib
+pytube
+tweepy
+textblob
+instaloader
+emoji
+flask_sqlalchemy
+mysqlclient
