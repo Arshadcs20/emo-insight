@@ -75,7 +75,7 @@ def transcribe_audio(audio_file_path):
 
 def generate_blog_from_transcription(transcription):
     api_key = os.getenv('OPENAI_API_KEY2')
-
+    print(api_key)
     prompt = f"""Based on the following transcript from a YouTube video, write a comprehensive blog article, write it based on the transcript, but don't make it look like a YouTube video, make it look like a proper blog article:
 
     {transcription}
