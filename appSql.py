@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 env = os.environ.get('FLASK_ENV', 'development')
 app.config.from_object(f'config.{env.capitalize()}Config')
-
+# Database Instance
 db = SQLAlchemy(app)
 
 # Twitter API credentials
@@ -27,12 +27,16 @@ auth = tweepy.OAuth1UserHandler(
     consumer_key, consumer_secret, access_token, access_token_secret)
 api = tweepy.API(auth)
 
+# User Model for Login and Authentication
+
 
 class User(db.Model):
     id = db.Column(db.String(32), primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(64), nullable=False)
     email = db.Column(db.String(64), nullable=False)
+
+# After analyzing the result will be save here in this table...
 
 
 class Post(db.Model):
@@ -44,6 +48,8 @@ class Post(db.Model):
     user_id = db.Column(db.String(32), db.ForeignKey(
         'user.id'), nullable=False)
 
+# Model for various facts and figures as unified dashboard
+
 
 class Dashboard(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -51,6 +57,8 @@ class Dashboard(db.Model):
     description = db.Column(db.Text, nullable=True)
     user_id = db.Column(db.String(32), db.ForeignKey(
         'user.id'), nullable=False)
+
+# Recent analyzed posts will be save here...
 
 
 class AnalysisResult(db.Model):
@@ -60,6 +68,8 @@ class AnalysisResult(db.Model):
     confidence_level = db.Column(db.Float, nullable=True)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=True)
 
+# Contact / Feedback Form
+
 
 class Feedback(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -67,10 +77,14 @@ class Feedback(db.Model):
     email = db.Column(db.String(100))
     message = db.Column(db.Text)
 
+# Default Route
+
 
 @app.route('/')
 def index():
     return redirect(url_for('login'))
+
+# Default Login Route
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -94,6 +108,8 @@ def login():
 def logout():
     session.pop('username', None)
     return redirect(url_for('login'))
+
+# Registration Route
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -330,6 +346,7 @@ def contact():
     return redirect(url_for('login'))
 
 
+# Starting Point
 if __name__ == '__main__':
     with app.app_context():
         try:
