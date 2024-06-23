@@ -1,41 +1,65 @@
 {% extends "base.html" %} {% block title %} History | Emo-Insight {% endblock %}
 {% block content %}
 <div class="content">
-  <main class="w-full items-center p-4 mt-2 justify-center">
+  <main class="w-full flex flex-col items-center p-4 mt-2">
     <h1
       class="border darkTitle rounded-md p-4 m-3 font-bold text-center text-4xl shadow-md"
     >
       Analysis Report
     </h1>
     {% for post_data in posts_with_analysis|reverse %}
-    <div class="border p-3 my-2 bg-white rounded-md shadow-md item">
-      <p class="p-2 m-2 text-lg flex justify-between justify-self-stretch">
-        <span
-          ><strong>Video URL:</strong
-          ><span
+    <div class="border p-3 my-2 rounded-md shadow-md w-full darkTitle">
+      <p class="p-2 m-2 text-lg flex flex-col sm:flex-row justify-between">
+        <span>
+          <strong>Video URL:</strong>
+          <a
+            href="{{ post_data['video_url'] }}"
             class="video-url text-blue-700 hover:underline hover:cursor-pointer"
-            >&nbsp;{{ post_data['video_url'] }}</span
-          ></span
-        >
-        <span class="title"
-          >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Dated:</strong>&nbsp;{{
-          post_data['timestamp'] }}</span
-        >
+            target="_blank"
+          >
+            &nbsp;{{ post_data['video_url'] }}
+          </a>
+        </span>
+        <span class="mt-2 sm:mt-0">
+          <strong>Dated:</strong>&nbsp;{{ post_data['timestamp'] }}
+        </span>
       </p>
-      <p class="p-2 m-2 text-lg justify-self-stretch">
+      <p class="p-2 m-2 text-lg">
         <strong>Title:</strong>
         <span class="title">{{ post_data['title'] }}</span>
       </p>
-      <p class="p-2 m-2 text-lg justify-self-stretch">
-        <strong>Transcription:</strong
-        ><span class="transcription text-sm"
-          >{{ post_data['transcription'] }}</span
-        >
+      <p class="p-2 m-2 text-lg">
+        <strong>Transcription:</strong>
+        <span class="transcription">{{ post_data['transcription'] }}</span>
       </p>
-      <p class="p-2 m-2 text-lg justify-self-stretch">
+      <p class="p-2 m-2 text-lg">
         <strong>Confidence Level:</strong>
         <span class="confidence-level"
           >{{ post_data['confidence_level'] }}</span
+        >
+      </p>
+      <p class="p-2 m-2 text-lg">
+        <strong> Positive Comments:</strong>
+        <span class="positive-comments"
+          >{{ post_data['positive_comments'] }}</span
+        >
+      </p>
+      <p class="p-2 m-2 text-lg">
+        <strong> Negative Comments:</strong>
+        <span class="negative-comments"
+          >{{ post_data['negative_comments'] }}</span
+        >
+      </p>
+      <p class="p-2 m-2 text-lg">
+        <strong> Neutral Comments:</strong>
+        <span class="neutral-comments"
+          >{{ post_data['neutral_comments'] }}</span
+        >
+      </p>
+      <p class="p-2 m-2 text-lg">
+        <strong>Overall Sentiment:</strong>
+        <span class="overall-sentiment"
+          >{{ post_data['overall_sentiment'] }}</span
         >
       </p>
     </div>

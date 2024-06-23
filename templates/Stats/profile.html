@@ -1,20 +1,19 @@
 {% extends "base.html" %} {% block title %} Profile | Emo-Insight {% endblock %}
 {% block content %}
-
 <div class="content">
   <section class="text-gray-600 body-font">
     <div
-      class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center"
+      class="container mx-auto flex flex-col lg:flex-row items-center px-5 py-8 md:py-24"
     >
       <div
         class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center"
       >
         <h1
-          class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"
+          class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900 darkTitle"
         >
           Muhammad <br class="hidden lg:inline-block" />Arshad
         </h1>
-        <p class="mb-8 leading-relaxed">
+        <p class="mb-8 leading-relaxed darkTitle">
           As an aspiring programmer deeply immersed in the realm of computer
           science and technology, I find myself continuously driven by the
           endless possibilities of coding. From front-end design to back-end
@@ -32,27 +31,78 @@
           learn, adapt, and grow.
         </p>
         <div class="flex justify-center">
-          <button
+          <a
+            href="https://github.com/Arshadcs20"
+            target="_blank"
             class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
           >
-            <a href="https://github.com/Arshadcs20" target="_blank">Github</a>
-          </button>
-          <button
+            Github
+          </a>
+          <a
+            href="https://www.linkedin.com/in/Arshadcs20"
+            target="_blank"
             class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
           >
             LinkedIn
-          </button>
+          </a>
         </div>
       </div>
-      <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+      <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
         <img
-          class="object-cover object-center rounded-full shadow-lg p-1"
+          class="object-cover object-center rounded-full shadow-lg"
           alt="hero"
           src="../../static/profilePNG.png"
         />
       </div>
     </div>
+    <div class="container mx-auto mt-4">
+      <div class="text-center md:text-left">
+        <h2 class="text-2xl font-medium text-gray-900 mb-4 darkTitle">
+          Contact Information
+        </h2>
+        <p class="leading-relaxed text-base darkTitle">
+          <strong>Email:</strong> marshadcs20@gmail.com<br />
+          <strong>Phone:</strong> 0326-7680746
+        </p>
+      </div>
+      <div class="mt-8">
+        <h2 class="text-2xl font-medium text-gray-900 mb-4 darkTitle">
+          Skills
+        </h2>
+        <ul class="list-disc pl-5 darkTitle">
+          <li>
+            <strong>Front-end Development:</strong> HTML, CSS, JavaScript, React
+          </li>
+          <li>
+            <strong>Back-end Development:</strong> Node.js, Express, Flask,
+            Django
+          </li>
+          <li><strong>Database Management:</strong> MySQL, MongoDB</li>
+          <li><strong>Version Control:</strong> Git, GitHub</li>
+          <li><strong>Cloud Services:</strong> AWS</li>
+        </ul>
+      </div>
+      <div class="mt-8">
+        <h2 class="text-2xl font-medium text-gray-900 mb-4 darkTitle">
+          Projects
+        </h2>
+        <ul class="list-disc pl-5 darkTitle">
+          <li>
+            <strong>Emo-Insight:</strong> A sentiment analysis tool that
+            processes comments from social media platforms and generates
+            insights.
+          </li>
+          <li>
+            <strong>Portfolio Website:</strong> A personal website showcasing my
+            projects and skills, built with React and Tailwind CSS.
+          </li>
+          <li>
+            <strong>Blog Application:</strong> A full-stack web application for
+            creating and managing blog posts, using Flask and MongoDB.
+          </li>
+        </ul>
+      </div>
+    </div>
   </section>
 </div>
-
 {% endblock %}

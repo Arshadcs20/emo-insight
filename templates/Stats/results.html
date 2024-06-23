@@ -3,10 +3,10 @@ endblock %} {% block content %}
 
 <div class="content">
   <main class="">
-    <h1 class="text-4xl font-bold m-2 text-center">
+    <h1 class="text-4xl font-bold m-2 text-center darkTitle">
       YouTube Comment Sentiment Assessment
     </h1>
-    <div class="mb-2 flex w-full justify-center items-center p-4">
+    <div class="mb-2 flex w-full justify-center items-center p-4 darkTitle">
       <p
         class="text-gray-700 border bg-slate-200 mx-5 p-4 font-bold rounded-lg"
       >
@@ -26,37 +26,87 @@ endblock %} {% block content %}
         Neutral: {{ neutral_count }}
       </p>
     </div>
+
     <div class="mb-4 flex w-full flex-col justify-center items-center p-4">
-      <h2 class="text-3xl font-bold p-2 mb-1 text-center">Word Cloud</h2>
+      <h2 class="text-3xl font-bold p-2 mb-1 text-center darkTitle">
+        Word Cloud
+      </h2>
       <img src="data:image/png;base64,{{ wordcloud_img }}" alt="Word Cloud" />
     </div>
+
+    <div class="mb-4 flex w-full justify-center items-center p-4">
+      <h2 class="text-2xl font-bold p-2 mb-1 text-center darkTitle">
+        Overall Statistics
+      </h2>
+      <p
+        class="text-gray-700 border bg-slate-200 mx-5 p-4 font-bold rounded-lg darkTitle"
+      >
+        Total Sentiments Analyzed: {{ total_sentiments_analyzed }}
+      </p>
+      <div class="flex flex-col items-center">
+        <h3 class="text-xl font-bold p-2 mb-1 text-center darkTitle">
+          Sentiment Distribution
+        </h3>
+        <ul>
+          {% for sentiment, count in sentiment_distribution %}
+          <li
+            class="text-gray-700 border bg-slate-200 mx-5 p-4 font-bold rounded-lg darkTitle"
+          >
+            {{ sentiment }}: {{ count }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="flex flex-col items-center">
+        <h3 class="text-xl font-bold p-2 mb-1 text-center darkTitle">
+          Platform Comparison
+        </h3>
+        <ul>
+          {% for platform, count in platform_comparison %}
+          <li
+            class="text-gray-700 border bg-slate-200 mx-5 p-4 font-bold rounded-lg darkTitle"
+          >
+            {{ platform }}: {{ count }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
     <div class="min-h-3/4">
       <div class="m-4">
-        <p>{{transcription}}</p>
+        <h2 class="text-3xl font-bold p-2 mb-1 text-center darkTitle">
+          Transcription
+        </h2>
+        <p class="darkTitle">{{ transcription }}</p>
       </div>
       <div class="m-4">
-        <p>{{summary}}</p>
+        <h2 class="text-3xl font-bold p-2 mb-1 text-center darkTitle">
+          Summary
+        </h2>
+        <p>{{ summary }}</p>
       </div>
       <ul>
-        <h2 class="text-lg font-semibold mb-2">
-          Comments with Sentiments about {{title}}
+        <h2 class="text-lg font-semibold mb-2 darkTitle">
+          Comments with Sentiments about {{ title }}
         </h2>
         {% for index in range(comments|length) %}
         <li class="mb-2 border gap-1 hover:bg-blue-300 rounded-2xl flex">
           <span
-            class="text-gray-700 border gap-2 p-2 rounded-lg shadow-sm w-11/12"
+            class="text-gray-700 border gap-2 p-2 rounded-lg shadow-sm w-11/12 darkTitle"
           >
-            {{ comments[index] }}</span
-          >
+            {{ comments[index] }}
+          </span>
           <span
-            class="text-gray-700 border gap-2 p-2 rounded-lg shadow-sm w-1/12"
-            >{{ sentiments[index] }}</span
+            class="text-gray-700 border gap-2 p-2 rounded-lg shadow-sm w-1/12 darkTitle"
           >
+            {{ sentiments[index] }}
+          </span>
         </li>
         {% endfor %}
       </ul>
     </div>
   </main>
-
-  {% endblock %}
 </div>
+
+{% endblock %}

@@ -15,8 +15,6 @@ import os
 # Just for environment Variable...
 load_dotenv()
 
-# function to get youtube video title
-
 
 def yt_title(link):
     yt = YouTube(link)
@@ -125,7 +123,7 @@ def generate_wordcloud(comments):
 
 
 # Download NLTK resources(if not already downloaded)
-nltk.download('vader_lexicon')
+# nltk.download('vader_lexicon')
 
 # This function is responsible of getting Video Id using Regular Expressions
 

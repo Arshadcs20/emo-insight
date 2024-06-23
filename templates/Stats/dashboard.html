@@ -3,10 +3,7 @@ block content %}
 
 <!-- Main Content -->
 <div class="content">
-  <!-- Navbar -->
-  <!-- Navbar -->
-
-  <main class="">
+  <main>
     <div class="header">
       <div class="left">
         <h1>Dashboard</h1>
@@ -16,7 +13,10 @@ block content %}
           <li><a href="#" class="active">Results</a></li>
         </ul>
       </div>
-      <a href="#" class="report">
+      <a
+        href="/download-csv"
+        class="report flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+      >
         <i class="bx bx-cloud-download"></i>
         <span>Download CSV</span>
       </a>
@@ -27,29 +27,22 @@ block content %}
       <li>
         <i class="bx bx-calendar-check"></i>
         <span class="info">
-          <h3>1,074</h3>
-          <p>Completed Tasks</p>
+          <h3>{{ total_sentiments }}</h3>
+          <p>Total Sentiments Analyzed</p>
         </span>
       </li>
       <li>
         <i class="bx bx-show-alt"></i>
         <span class="info">
-          <h3>3,944</h3>
-          <p>Site Visit</p>
+          <h3>{{ sentiment_distribution|length }}</h3>
+          <p>Sentiment Distribution</p>
         </span>
       </li>
       <li>
         <i class="bx bx-line-chart"></i>
         <span class="info">
-          <h3>14,721</h3>
-          <p>Searches</p>
-        </span>
-      </li>
-      <li>
-        <i class="bx bx-dollar-circle"></i>
-        <span class="info">
-          <h3>$6,742</h3>
-          <p>Total Save</p>
+          <h3>{{ platform_comparison|length }}</h3>
+          <p>Platform Comparison</p>
         </span>
       </li>
     </ul>
@@ -72,30 +65,18 @@ block content %}
             </tr>
           </thead>
           <tbody>
+            {% for data in recent_status %}
             <tr>
               <td>
                 <img src="/static/profilePNG.png" />
-                <p>Arshad</p>
+                <p>{{ data.user.username }}</p>
               </td>
-              <td>01-03-2024</td>
-              <td><span class="status completed">Completed</span></td>
-            </tr>
-            <tr>
+              <td>{{ data.date }}</td>
               <td>
-                <img src="/static/mySelf.jpg" />
-                <p>Aaqil</p>
+                <span class="status completed">{{ data.sentiment }}</span>
               </td>
-              <td>5-03-2024</td>
-              <td><span class="status pending">Pending</span></td>
             </tr>
-            <tr>
-              <td>
-                <img src="/static/logoOld.png" />
-                <p>Shahzad</p>
-              </td>
-              <td>8-03-2024</td>
-              <td><span class="status process">Processing</span></td>
-            </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>
@@ -104,7 +85,7 @@ block content %}
       <div class="reminders">
         <div class="header">
           <i class="bx bx-note"></i>
-          <h3>Remiders</h3>
+          <h3>Reminders</h3>
           <i class="bx bx-filter"></i>
           <i class="bx bx-plus"></i>
         </div>
@@ -119,21 +100,20 @@ block content %}
           <li class="completed">
             <div class="task-title">
               <i class="bx bx-check-circle"></i>
-              <p>Analyse Our Site</p>
+              <p>Analyze Our Site</p>
             </div>
             <i class="bx bx-dots-vertical-rounded"></i>
           </li>
           <li class="not-completed">
             <div class="task-title">
               <i class="bx bx-x-circle"></i>
-              <p>Play Footbal</p>
+              <p>Play Football</p>
             </div>
             <i class="bx bx-dots-vertical-rounded"></i>
           </li>
         </ul>
       </div>
-
-      <!-- End of Reminders-->
+      <!-- End of Reminders -->
     </div>
   </main>
 </div>

@@ -1,4 +1,3 @@
-# Following are the dependencies which need to be installed 
 Flask
 requests
 nltk
@@ -14,3 +13,4 @@ emoji
 python-dotenv
 flask_sqlalchemy
 mysqlclient
+flask-admin

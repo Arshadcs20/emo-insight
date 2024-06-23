@@ -9,6 +9,10 @@
       href="{{url_for('static',filename='css/output.css')}}"
       rel="stylesheet"
     />
+    <link
+      href="{{url_for('static',filename='css/flashStyles.css')}}"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../static/css/particle-styel.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -122,7 +126,37 @@
 
       <!-- End of Navbar -->
     </div>
-    {% block content %}{% endblock %}
+    <!-- Flashing Messages Section with Tailwind CSS -->
+    <div class="content mt-4">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div
+        class="alert alert-{{ category }} bg-blue-100 border-l-4 border-blue-500 text-blue-900 px-4 py-3 rounded relative shadow-md mb-4"
+        role="alert"
+      >
+        <!-- <strong class="font-bold">{{ category }}</strong> -->
+        <span class="block sm:inline">{{ message }}</span>
+        <button
+          type="button"
+          class="close absolute top-0 right-0 px-4 py-3"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <svg
+            class="fill-current h-6 w-6 text-blue-500"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414L11.414 10l2.293 2.293a1 1 0 01-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z"
+            />
+          </svg>
+        </button>
+      </div>
+      {% endfor %} {% endif %} {% endwith %}
+    </div>
+
+    {% block content %} {% endblock %}
 
     <!-- footer -->
     <footer class="text-gray-600 body-font ml-16 fixed-bottom my-3 footerDark">
@@ -233,7 +267,7 @@
         });
       });
     </script>
-    <!-- <script src="../static/js/particle.js"></script> -->
+    <script src="../static/js/flashClose.js"></script>
     <script src="../static/js/search.js"></script>
     {% block scripts %}{% endblock %}
   </body>
